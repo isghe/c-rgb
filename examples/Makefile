@@ -18,5 +18,5 @@ dir:
 clean:
 	$(RM) -r ${BUILDDIR}
 
-$(BINARIES) : ${BUILDDIR}/% : %.c ../target/debug/librgb.a ../include/rgb.h
-	$(CC) $< $(CFLAGS) $(LDFLAGS) -o $@
+$(BINARIES) : ${BUILDDIR}/% : %.c ../target/debug/librgb.a ../include/rgb.h lib/rgb_example_util.h lib/rgb_example_util.c
+	$(CC) $< $(CFLAGS) $(LDFLAGS) lib/rgb_example_util.c -o $@
