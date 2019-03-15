@@ -34,6 +34,8 @@ int main() {
             .payload = (uint8_t *) malloc(hex_length / 2)
     };
 
+	HexToBin(hex, tx.payload);
+
     const struct rgb_needed_tx need = {
             .type = RGB_NEEDED_TX_SPENDS_OUTPOINT,
             .outpoint = issuance_utxo
