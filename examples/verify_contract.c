@@ -28,9 +28,10 @@ int main() {
 
     // hex of issuance_utxo tx
     const char hex[] = "020000000001010000000000000000000000000000000000000000000000000000000000000000ffffffff0502e9010101ffffffff0240be40250000000023210314ee885fe5705d7b789b1dea86ce5797500192633c2f07e517fefbfb529152acac0000000000000000266a24aa21a9ede2f61c3f71d1defd3fa999dfa36953755c690689799962b48bebd836974e8cf90120000000000000000000000000000000000000000000000000000000000000000000000000";
+    const size_t hex_length = sizeof (hex) - 1; //  sizeof (hex) - 1 == strlen (hex);
     struct rgb_bitcoin_serialized_tx tx = {
-            .size = (sizeof(hex) / 2),
-            .payload = (uint8_t *) malloc(sizeof(hex) / 2)
+            .size = (hex_length / 2),
+            .payload = (uint8_t *) malloc(hex_length / 2)
     };
 
     const struct rgb_needed_tx need = {
