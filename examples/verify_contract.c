@@ -1,21 +1,10 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
 #include <rgb.h>
 #include "lib/rgb_example_util.h"
-
-static inline uint8_t char_value(char c) {
-    if (c >= '0' && c <= '9') return c - '0';
-    if (c >= 'a' && c <= 'f') return c - 'a' + 0x0A;
-    return c - 'A' + 0x0A;
-}
-
-void decode_hex(const char *c, uint8_t *buffer, size_t len) {
-    for (size_t i = 0; i < len; ++i) {
-        buffer[i] = (char_value(c[i * 2]) << 4) | char_value(c[i * 2 + 1]);
-    }
-}
 
 int main() {
 
