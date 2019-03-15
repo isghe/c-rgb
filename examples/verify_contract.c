@@ -52,5 +52,7 @@ int main() {
     rgb_free(map,
     struct rgb_needed_tx_map);
 	free (tx.payload);
+	tx.payload = NULL;
+	tx.size = 0;
     return EXIT_SUCCESS;
 }
