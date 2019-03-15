@@ -4,13 +4,7 @@
 #include <assert.h>
 
 #include <rgb.h>
-
-void print_hex(const void *p, size_t len) {
-    for (size_t i = 0; i < len; ++i)
-        printf("%02hhx", *((uint8_t *) p + i));
-
-    printf("\n");
-}
+#include "lib/rgb_example_util.h"
 
 int main() {
     struct rgb_bitcoin_outpoint utxo = {

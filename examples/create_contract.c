@@ -3,26 +3,20 @@
 #include <stdio.h>
 
 #include <rgb.h>
-
-void print_hex(const void *p, size_t len) {
-    for (size_t i = 0; i < len; ++i)
-        printf("%02hhx", *((uint8_t *) p + i));
-
-    printf("\n");
-}
+#include "lib/rgb_example_util.h"
 
 int main() {
     struct rgb_bitcoin_outpoint issuance_utxo = {
-            .txid = {{0xDE, 0xAD, 0xBE, 0xEF, 0xFF}},
             .vout = 3
     };
+	HexToBin ("08a8efe33fd3dda4f878f995d843bd70471a8a32c83c3a9418a09ca30759cb02", (unsigned char *) &issuance_utxo.txid.val);
 
-    struct rgb_bitcoin_outpoint initial_owner_utxo = {
-            .txid = {{0x00, 0x01, 0x02, 0x04, 0x08, 0xFF}},
+	struct rgb_bitcoin_outpoint initial_owner_utxo = {
             .vout = 0
     };
+	HexToBin ("54a56e95e583fa11e93b9c7ccbd933eaa71e6eaeab376969a7eb2735ee84feb5", (unsigned char *) &initial_owner_utxo.txid.val);
 
-    struct rgb_contract contract = {
+	struct rgb_contract contract = {
             .title = "My Title",
             .issuance_utxo = issuance_utxo,
             .initial_owner_utxo = initial_owner_utxo,
