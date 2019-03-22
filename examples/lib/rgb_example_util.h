@@ -5,7 +5,7 @@
 extern "C"{
 #endif
 
-extern void HexToBin (const char * theString, unsigned char * bytes);
+extern void HexToBin (const char * theString, unsigned char * bytes, const int invert);
 extern void print_hex(const void *p, size_t len);
 
 

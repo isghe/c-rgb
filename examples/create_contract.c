@@ -9,12 +9,12 @@ int main() {
     struct rgb_bitcoin_outpoint issuance_utxo = {
             .vout = 3
     };
-	HexToBin ("08a8efe33fd3dda4f878f995d843bd70471a8a32c83c3a9418a09ca30759cb02", (unsigned char *) &issuance_utxo.txid.val);
+	HexToBin ("08a8efe33fd3dda4f878f995d843bd70471a8a32c83c3a9418a09ca30759cb02", (unsigned char *) &issuance_utxo.txid.val, 1);
 
 	struct rgb_bitcoin_outpoint initial_owner_utxo = {
             .vout = 0
     };
-	HexToBin ("54a56e95e583fa11e93b9c7ccbd933eaa71e6eaeab376969a7eb2735ee84feb5", (unsigned char *) &initial_owner_utxo.txid.val);
+	HexToBin ("54a56e95e583fa11e93b9c7ccbd933eaa71e6eaeab376969a7eb2735ee84feb5", (unsigned char *) &initial_owner_utxo.txid.val, 1);
 
 	struct rgb_contract contract = {
             .title = "My Title",

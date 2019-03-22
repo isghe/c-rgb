@@ -8,7 +8,7 @@ MKDIR_P = mkdir -p
 CC := gcc
 
 LDFLAGS := -L../target/debug/
-CFLAGS := -g -static -lrgb -lpthread -ldl -lm -Wall -Wextra -I../include/
+CFLAGS := -g -lrgb -lpthread -ldl -lm -Wall -Wextra -I../include/
 
 all: dir $(BINARIES)
 
