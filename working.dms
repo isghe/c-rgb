@@ -1,0 +1,36 @@
+diff --git a/examples/verify_contract.c b/examples/verify_contract.c
+index ec9f4f6..681891e 100644
+--- a/examples/verify_contract.c
++++ b/examples/verify_contract.c
+@@ -9,25 +9,25 @@
+ int main() {
+ 
+     struct rgb_bitcoin_outpoint issuance_utxo = {
+-            .vout = 3
++            .vout = 0
+     };
+-	HexToBin ("08a8efe33fd3dda4f878f995d843bd70471a8a32c83c3a9418a09ca30759cb02", (unsigned char *) &issuance_utxo.txid.val);
++	HexToBin ("46792d3ee6dbd89d429b293b12e809a3a091c3140c52fc8ed9cf8ec23d1a95e9", (unsigned char *) &issuance_utxo.txid.val);
+ 
+     struct rgb_bitcoin_outpoint initial_owner_utxo = {
+             .vout = 0
+     };
+-	HexToBin ("54a56e95e583fa11e93b9c7ccbd933eaa71e6eaeab376969a7eb2735ee84feb5", (unsigned char *) &initial_owner_utxo.txid.val);
++	HexToBin ("c3865c2544ecefc0480fe940bc60ed8a3bec2d84c69f32beb0c57308170c8c4a", (unsigned char *) &initial_owner_utxo.txid.val);
+ 
+     struct rgb_contract contract = {
+-            .title = "My Title",
++            .title = "My Awesome Asset",
+             .issuance_utxo = issuance_utxo,
+             .initial_owner_utxo = initial_owner_utxo,
+-            .network = RGB_NETWORK_TESTNET,
++            .network = RGB_NETWORK_REGTEST,
+             .total_supply = 1000
+     };
+ 
+     // hex of issuance_utxo tx
+-    const char hex[] = "020000000001010000000000000000000000000000000000000000000000000000000000000000ffffffff0502e9010101ffffffff0240be40250000000023210314ee885fe5705d7b789b1dea86ce5797500192633c2f07e517fefbfb529152acac0000000000000000266a24aa21a9ede2f61c3f71d1defd3fa999dfa36953755c690689799962b48bebd836974e8cf90120000000000000000000000000000000000000000000000000000000000000000000000000";
++    const char hex[] = "010000000146792d3ee6dbd89d429b293b12e809a3a091c3140c52fc8ed9cf8ec23d1a95e9000000004847304402205d68b44e42b47a7cc3b4800d100e1a99549bfa30ca0d1277490054c696e0f62002204eff912bb8841c5705ba6d4c95f3d757c6dab9fcd82d5f378ab6d95c7cfba07f01000000000248e6052a0100000017a9148f7cc036b8b011b8343f685cd19f7456950316c2870000000000000000226a20dfa7d82833ba808012d637e507bca5b00c01218975be05b8770fe7008065d04500000000";
+     const size_t hex_length = sizeof (hex) - 1; //  sizeof (hex) - 1 == strlen (hex);
+     struct rgb_bitcoin_serialized_tx tx = {
+             .size = (hex_length / 2),

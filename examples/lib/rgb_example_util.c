@@ -17,41 +17,27 @@ static int HexToBinCoupleChar (const char c1, const char c2){
 }
 
 void HexToBin (const char * theString, unsigned char * bytes, const int invert){
-/*
-con python ho girato le due stringhe
-(`'.join([x + y for (x,y) in zip(a[::2], a[1::2])[::-1]]`)
-dove a è la stringa hex) e funziona
-*/
 	assert (NULL != theString);
 	assert (NULL != bytes);
 
 	const size_t len = strlen (theString);
 	
 	if (invert){
-	/*
-		1234
-		2143
-		4321
-		3412
-	*/
-		char * aCopy = malloc (len + 1);
-		aCopy [len] = 0;
-		for (size_t i = 0; i < len; ++i){
-			const char aChar = theString [len - i -1];
-			aCopy [i] = aChar;
-		}
-		printf ("%s;\n", theString);
-		printf ("%s;\n", aCopy);
+		char * aInvert = malloc (len + 1);
+		assert (NULL != aInvert);
+
+		aInvert [len] = 0;
+
+		// "1234" -> "3412"
 		for (size_t i = 0; i < len; i +=2){
-			const char temp = aCopy [i+0];
-			aCopy [i+0] = aCopy [i+1];
-			aCopy [i+1] = temp;
+			aInvert [i+0] = theString [len - i - 2];
+			aInvert [i+1] = theString [len - i - 1];
 		}
-		printf ("%s;\n", aCopy);
 		
 		for (size_t i = 0; i < len; i +=2){
-			bytes [i/2] = HexToBinCoupleChar (aCopy [i+0], aCopy [i+1]);
+			bytes [i/2] = HexToBinCoupleChar (aInvert [i+0], aInvert [i+1]);
 		}
+		free (aInvert);
 	}
 	else{
 		for (size_t i = 0; i < len; i +=2){
