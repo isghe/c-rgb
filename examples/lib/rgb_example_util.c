@@ -12,8 +12,18 @@ void print_hex(const void *p, size_t len);
 static int HexToBinCoupleChar (const char c1, const char c2){
 	assert (isxdigit (c1));
 	assert (isxdigit (c2));
+
 	const char str [] = {c1, c2, 0};
 	return strtol (str, NULL, 16);
+}
+
+static void HexToBinLoop (const char * theString, unsigned char * bytes, const size_t len){
+	assert (NULL != theString);
+	assert (NULL != bytes);
+
+	for (size_t i = 0; i < len; i +=2){
+		bytes [i/2] = HexToBinCoupleChar (theString [i+0], theString [i+1]);
+	}
 }
 
 void HexToBin (const char * theString, unsigned char * bytes, const int invert){
@@ -34,15 +44,11 @@ void HexToBin (const char * theString, unsigned char * bytes, const int invert){
 			aInvert [i+1] = theString [len - i - 1];
 		}
 		
-		for (size_t i = 0; i < len; i +=2){
-			bytes [i/2] = HexToBinCoupleChar (aInvert [i+0], aInvert [i+1]);
-		}
+		HexToBinLoop (aInvert, bytes, len);
 		free (aInvert);
 	}
 	else{
-		for (size_t i = 0; i < len; i +=2){
-			bytes [i/2] = HexToBinCoupleChar (theString [i+0], theString [i+1]);
-		}
+		HexToBinLoop (theString, bytes, len);
 	}
 }
 
